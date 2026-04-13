@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+export DEBIAN_FRONTEND=noninteractive
+
+# --- Version-aware bootstrap ---
+# Changing BOOTSTRAP_VERSION forces a full reinstall on next boot.
+BOOTSTRAP_VERSION="4"
+BOOTSTRAP_MARKER="/var/lib/collab-jupyter/bootstrap-v$${BOOTSTRAP_VERSION}"
+
+if [[ ! -f "$${BOOTSTRAP_MARKER}" ]]; then
+  apt-get update
+  apt-get install -y python3 python3-pip python3-venv git
+
+  id -u jupyter >/dev/null 2>&1 || useradd --create-home --shell /bin/bash jupyter
+
+  mkdir -p ${notebook_dir}
+
+  # Clean previous venv to avoid stale packages
+  rm -rf /opt/jupyterlab
+  python3 -m venv /opt/jupyterlab
+  /opt/jupyterlab/bin/pip install --upgrade pip
+  /opt/jupyterlab/bin/pip install \
+    "jupyterlab>=4.4,<5" \
+    "jupyter-collaboration>=4,<5" \
+    "ipykernel>=6,<7"
+
+  # Verify the collaboration extension is registered
+  /opt/jupyterlab/bin/jupyter server extension list 2>&1 | tee /var/log/jupyter-extensions.log
+
+  # Remove old markers and write new one
+  rm -f /var/lib/collab-jupyter/bootstrap-*
+  mkdir -p /var/lib/collab-jupyter
+  touch "$${BOOTSTRAP_MARKER}"
+fi
+
+id -u jupyter >/dev/null 2>&1 || useradd --create-home --shell /bin/bash jupyter
+mkdir -p ${notebook_dir}
+chown -R jupyter:jupyter /opt/jupyterlab ${notebook_dir}
+
+cat >/etc/systemd/system/collaborative-jupyterlab.service <<EOF
+[Unit]
+Description=Collaborative JupyterLab
+After=network.target
+
+[Service]
+Type=simple
+User=jupyter
+Group=jupyter
+WorkingDirectory=${notebook_dir}
+Environment=PATH=/opt/jupyterlab/bin:/usr/bin:/bin
+ExecStart=/opt/jupyterlab/bin/jupyter lab \
+  --ip=0.0.0.0 \
+  --port=${jupyter_port} \
+  --no-browser \
+  --ServerApp.allow_remote_access=True \
+  --ServerApp.token=${jupyter_token} \
+  --ServerApp.password= \
+  --ServerApp.root_dir=${notebook_dir} \
+  --ServerApp.preferred_dir=${notebook_dir} \
+  --collaborative
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable --now collaborative-jupyterlab.service

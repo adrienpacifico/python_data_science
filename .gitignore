@@ -1,1 +1,11 @@
 .*
+
+/.quarto/
+**/*.quarto_ipynb
+_site/
+collaborative_jupyter.env
+infra/collab_jupyter_gcp/.terraform/
+infra/collab_jupyter_gcp/.terraform.lock.hcl
+infra/collab_jupyter_gcp/terraform.tfstate
+infra/collab_jupyter_gcp/terraform.tfstate.backup
+infra/collab_jupyter_gcp/terraform.tfstate.d/
