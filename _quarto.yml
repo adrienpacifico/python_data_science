@@ -1,0 +1,97 @@
+project:
+  type: book
+  output-dir: _site
+
+book:
+  title: "Python pour la Data Science"
+  subtitle: "Formation professionnelle — 3 jours"
+  author: "Adrien Pacifico"
+  language: fr
+  search: true
+
+  sidebar:
+    style: "docked"
+    search: true
+
+  navbar:
+    right:
+      - icon: github
+        href: https://github.com/adrienpacifico/python_data_science
+        aria-label: GitHub
+      - text: "Lancer Jupyter"
+        icon: play-circle
+        href: https://mybinder.org/v2/gh/adrienpacifico/python_data_science/HEAD?urlpath=lab
+        aria-label: Ouvrir dans Binder
+
+  chapters:
+    - index.qmd
+
+    - part: "Environnement & Outillage"
+      chapters:
+        - python/0_0-Mettre_en_place_son_environnement_python_theory.ipynb
+        - python/0_1-Mettre_en_place_son_env_de_dev_python_pratique_uv.ipynb
+
+    - part: "Python — Fondamentaux"
+      chapters:
+        - python/1-python_introduction_v2.ipynb
+        - python/3-load_modules_v2.ipynb
+        - python/4-Functions_v2.ipynb
+        - "python/8-booléen_et_operateurs.ipynb"
+        - python/6-exceptions_et_tests_v2.ipynb
+        - python/9-python_traps.ipynb
+
+    - part: "Pandas"
+      chapters:
+        - pandas/1-introduction_a_pandas_v2.ipynb
+        - pandas/2-la_dataframe_et_la_serie_v2.ipynb
+        - pandas/3-selectionner_et_filtrer_v2.ipynb
+        - pandas/9-modern_pandas_v2.ipynb          # modern pandas tôt = method chaining dès le début
+        - pandas/4.0-grouping_v2.ipynb
+        - pandas/4.1-combining_v2.ipynb
+        - pandas/4.2-reshaping_v2.ipynb
+        - pandas/5-apply_map_transform_v2.ipynb
+        - pandas/6-strings_v2.ipynb
+        - pandas/7-les_types_v2.ipynb
+        - pandas/8-lire_enregistrer_v2.ipynb
+        - pandas/10-time_series.ipynb
+        - pandas/11-ecosysteme_pandas_polars_duckdb_spark_v2.ipynb
+        - pandas/pandas_traps_v2.ipynb
+
+    - part: "Visualisation"
+      chapters:
+        - plot/plot.ipynb
+
+    - part: "Statsmodels"
+      chapters:
+        - statsmodels/statsmodels.ipynb
+
+    - part: "Pandas — Approfondissements"
+      chapters:
+        - pandas/advance/3.1-selection_subtilites_loc_iloc.ipynb
+        - pandas/advance/3.2-filtrer_where_mask.ipynb
+        - pandas/advance/performance_categoriels.ipynb
+        - pandas/advance/styling_dataframe.ipynb
+
+  appendices:
+    - pandas/exercices/1-syntaxe_v2.ipynb
+    - pandas/exercices/2-reshaping_v2.ipynb
+
+# Ne pas ré-exécuter les notebooks — on rend les outputs déjà présents
+execute:
+  enabled: false
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    toc-title: "Sur cette page"
+    code-copy: true
+    code-overflow: wrap
+    code-fold: false
+    highlight-style: github
+    grid:
+      sidebar-width: 280px
+      body-width: 900px

@@ -52,3 +52,29 @@ Puis installer les packages nécessaires
 ### Via Docker
 `docker build -t python_data_science .`
 `docker run -v "${PWD}":/ -p 8888:8888 python_data_science`
+
+---
+
+### Site Quarto (navigation web du cours)
+
+Les notebooks sont également disponibles sous forme de site web navigable grâce à [Quarto](https://quarto.org/). La configuration se trouve dans `_quarto.yml`.
+
+#### Prérequis
+
+Installer Quarto : https://quarto.org/docs/get-started/
+
+#### Prévisualiser en local
+
+```bash
+quarto preview
+```
+
+Cela lance un serveur local (par défaut `http://localhost:4848`) avec rechargement automatique à chaque modification.
+
+#### Générer le site statique
+
+```bash
+quarto render
+```
+
+Le site est généré dans le dossier `_site/`. Tu peux l'ouvrir directement avec `open _site/index.html` ou le déployer sur n'importe quel hébergement statique (GitHub Pages, Netlify, etc.).

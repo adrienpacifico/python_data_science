@@ -1,0 +1,32 @@
+# Python pour la Data Science
+
+Formation professionnelle intensive — 3 jours.
+
+## Objectif
+
+Donner aux professionnels déjà en poste un pied à l'étrier pour :
+
+- **Coder en Python** avec les outils modernes (uv, ruff)
+- **Manipuler de la donnée tabulaire** avec pandas (et un aperçu de l'écosystème : DuckDB, Polars)
+- **Visualiser** ses données
+- **Travailler avec un LLM** de façon efficace et critique
+
+## Plan du cours
+
+| Jour | Contenu |
+|------|---------|
+| **Jour 1** | Environnement Python moderne · Fondamentaux Python · Coder avec un LLM |
+| **Jour 2** | Pandas — sélection, filtrage, groupby, reshape, method chaining |
+| **Jour 3** | Visualisation · Écosystème data (DuckDB, Polars) · Exercice d'application |
+
+## Lancer les notebooks
+
+```bash
+# Installation (uv requis)
+uv sync
+
+# Lancer JupyterLab
+uv run jupyter lab
+```
+
+Ou directement dans le navigateur via le bouton **Lancer Jupyter** en haut de page.

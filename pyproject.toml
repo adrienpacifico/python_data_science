@@ -1,0 +1,24 @@
+[project]
+name = "python-data-science"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Adrien Pacifico", email = "adrienpacificopro@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "duckdb>=1.5.1",
+    "matplotlib>=3.10.8",
+    "pandas>=3.0.2",
+    "polars>=1.39.3",
+    "requests>=2.33.1",
+    "seaborn>=0.13.2",
+    "typeguard>=4.5.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+]
+
