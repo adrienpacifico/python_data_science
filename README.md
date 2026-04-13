@@ -9,12 +9,24 @@ Ce dossier contient une collection de notebook constituant une introduction à p
 3. plot:  
 Ce dossier contient quelques éléments pour réaliser des plot pandas et les backends matplotlib et plotly, soit directement via ces libraires.
 
+**Consulter le cours en ligne** : [https://adrienpacifico.github.io/python_data_science/](https://adrienpacifico.github.io/python_data_science/)
+
 Lancez les notebooks via Binder en cliquant sur :  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/adrienpacifico/python_data_science/HEAD?urlpath=lab)
 
 
-### Le cours peut également être lancé en utilisant soit:
+### Lancer le cours en local
 
-#### repo2Docker:
+#### Via uv (recommandé)
+
+Installer [uv](https://docs.astral.sh/uv/getting-started/installation/) puis :
+
+```bash
+uv sync
+uv run jupyter lab
+```
+
+#### Via repo2Docker
+
 Il est nécessaire d'avoir `Docker` d'installé sur son ordinateur, puis d'installer `repo2docker` ( via `python3 -m pip install jupyter-repo2docker` )
 
 Ensuite il suffit de se placer à la racine de ce repo puis d'exécuter via son terminal: 
@@ -22,54 +34,30 @@ Ensuite il suffit de se placer à la racine de ce repo puis d'exécuter via son 
 
 Si `make` est installé sur votre machine, vous pouvez à la place lancer la commande `make  start-repo-2-docker-editable`.
 
+#### Via Docker
 
-#### Via un environnement virtuel Python
-##### Sous Linux et Mac
+```bash
+docker build -t python_data_science .
+docker run -it -v "${PWD}":/home/docker/app -p 8888:8888 python_data_science
 ```
-python3 -m venv python-datascience-virtualenv
-source python-datascience-virtualenv/bin/activate
-
-```
-Puis installer les packages nécessaires 
-
-`pip install -r binder/requirements.txt`
-
-##### Sous Windows
-```
-python3 -m venv python-datascience-virtualenv
-python-datascience-virtualenv\Scripts\activate.bat
-```
-
-Puis installer les packages nécessaires 
-
-`pip install -r binder/requirements.txt`
-
-
-#### Via un environnement virtuel miniconda/anaconda
-
-`conda env create -f environment.yml`
-
-### Via Docker
-`docker build -t python_data_science .`
-`docker run -v "${PWD}":/ -p 8888:8888 python_data_science`
 
 ---
 
 ### Site Quarto (navigation web du cours)
 
-Les notebooks sont également disponibles sous forme de site web navigable grâce à [Quarto](https://quarto.org/). La configuration se trouve dans `_quarto.yml`.
+Les notebooks sont également disponibles sous forme de site web navigable grâce à [Quarto](https://quarto.org/).
 
-#### Prérequis
+**Site déployé** : [https://adrienpacifico.github.io/python_data_science/](https://adrienpacifico.github.io/python_data_science/)
 
-Installer Quarto : https://quarto.org/docs/get-started/
+Le site est automatiquement mis à jour via GitHub Actions à chaque push sur `main`. La configuration se trouve dans `_quarto.yml`.
 
 #### Prévisualiser en local
+
+Installer Quarto : https://quarto.org/docs/get-started/
 
 ```bash
 quarto preview
 ```
-
-Cela lance un serveur local (par défaut `http://localhost:4848`) avec rechargement automatique à chaque modification.
 
 #### Générer le site statique
 
@@ -77,4 +65,4 @@ Cela lance un serveur local (par défaut `http://localhost:4848`) avec rechargem
 quarto render
 ```
 
-Le site est généré dans le dossier `_site/`. Tu peux l'ouvrir directement avec `open _site/index.html` ou le déployer sur n'importe quel hébergement statique (GitHub Pages, Netlify, etc.).
+Le site est généré dans le dossier `_site/`.
