@@ -1,4 +1,6 @@
 .*
+!.github/
+!.gitignore
 
 /.quarto/
 **/*.quarto_ipynb

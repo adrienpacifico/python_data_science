@@ -1,28 +1,18 @@
+# Core
 pandas
-
-### Notebooks
-jupyterlab
-#### Code formatter
-jupyterlab_code_formatter
-##### Different code formatter
-black 
-isort
-autopep8
-yapf
-
-### Linter
-flake8
-pylint
-
-### Plotting
 matplotlib
 seaborn
+duckdb
+polars
+requests
+typeguard
 
+# Notebooks
+jupyterlab
+ipykernel
 
+# Linter / Formatter
+ruff
 
-widgetsnbextension
+# JupyterLab extensions
 jupyterlab-git
-lckr-jupyterlab-variableinspector
-jupyterlab-link-share
-# jupyterlab-lsp
-# xeus-python

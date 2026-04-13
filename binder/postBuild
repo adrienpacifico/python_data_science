@@ -1,4 +1,1 @@
 git-lfs pull
-
-# generate non minified assets so it's easier to step into the code on Binder
-jupyter lab build --minimize=False
